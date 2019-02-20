@@ -1,0 +1,16 @@
+{
+  "name": "kafka_consumer-microservice",
+  "version": "1.0.0",
+  "description": "Kafka Consumer Node.js on Docker",
+  "author": "Alunos FIAP",
+  "main": "consumer.js",
+  "scripts": {
+    "start": "node consumer.js"
+  },
+  "dependencies": {
+    "kafka-node": "^4.0.1",
+    "axios":"^0.18.0",
+    "jquery":"^3.3.1"
+  }
+}
+
