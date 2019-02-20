@@ -1,0 +1,36 @@
+version: '3'
+services:
+  kafka:
+    image: spotify/kafka
+    container_name: kafka
+    network_mode: "host"
+    ports:
+      - 9092:9092
+      - 2181:2181
+    environment:
+      - "ADVERTISED_HOST=0.0.0.0"
+      - "ADVERTISED_PORT=9092"
+
+  producer:
+    image: fiapmvinicius/64aoj_kafka_producer_microservice:latest
+    container_name: producer
+    network_mode: "host"
+    ports:
+      - 5001:5001
+    restart: on-failure
+    environment:
+      - "HOST=0.0.0.0"
+      - "PORTA=9092"
+      - "TOPICO=meu-topico"
+
+  consumer:
+    image: fiapmvinicius/64aoj_kafka_consumer_microservice:latest
+    container_name: consumer
+    network_mode: "host"
+    environment:
+      - "HOST=0.0.0.0"
+      - "PORTA=9092"
+      - "TOPICO=meu-topico"
+    depends_on:
+      - kafka
+      - producer
